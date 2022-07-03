@@ -27,7 +27,9 @@ class User extends Authenticatable
         'city',
         'state',
         'country',
-        'userType'
+        'userType',
+        'created_at',
+        'updated_at'
     ];
 
     /**
@@ -48,4 +50,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function Phone()
+
+    {
+        return $this->hasOne(Phone::class);
+
+    }
+
+    public function Address()
+    {
+
+        return $this->hasOne(Address::class);
+
+    }
+
 }

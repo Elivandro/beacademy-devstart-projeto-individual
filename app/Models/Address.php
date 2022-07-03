@@ -13,7 +13,18 @@ class Address extends Model
         'id',
         'address',
         'district',
-        'user_id'
+        'zip_code',
+        'user_id',
+        'created_at',
+        'updated_at'
     ];
+
+    public function User()
+    {
+
+        return $this->belongsTo(User::class);
+
+    }
+
 
 }

@@ -37,6 +37,10 @@
                     <label for="district">Bairro</label>
                 </div>
                 <div class="form-group">
+                    <input type="text" name="cep" id="cep" placeholder=" " required autocomplete="off"/>
+                    <label for="cep">CEP</label>
+                </div>
+                <div class="form-group">
                     <input type="text" name="city" id="city" placeholder=" " required autocomplete="off"/>
                     <label for="city">Cidade</label>
                 </div>

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('address');
             $table->string('district');
+            $table->string('zip_code');
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')
             ->onDelete('cascade');
             $table->timestamps();

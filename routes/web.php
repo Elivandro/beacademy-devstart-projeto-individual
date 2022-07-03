@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
+Route::get('/users/login', [UserController::class, 'index'])->name('users.index');
+Route::get('/users/register', [UserController::class, 'create'])->name('users.create');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
+
+Route::get('/admin', function (){
+
+    $users = \App\Models\User::all();
+    // $phones = \App\Models\Phone::all();
+    // $addreses = \App\Models\Address::all();
+
+
+    return view('admin.users', compact('users'));
+
+});
+
+
+Route::get('/account/', [AccountController::class, 'index'])->name('account.index');
