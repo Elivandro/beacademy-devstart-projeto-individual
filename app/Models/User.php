@@ -21,12 +21,11 @@ class User extends Authenticatable
         'id',
         'name',
         'email',
+        'email_verified_at',
         'password',
+        'password_created_at',
         'birthday',
         'cpf',
-        'city',
-        'state',
-        'country',
         'userType',
         'created_at',
         'updated_at'
@@ -51,17 +50,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function Phone()
-
+    public function Phones()
     {
-        return $this->hasOne(Phone::class);
+
+        return $this->hasMany(Phone::class);
 
     }
 
-    public function Address()
+    public function Addresses()
     {
 
-        return $this->hasOne(Address::class);
+        return $this->hasMany(Address::class);
 
     }
 

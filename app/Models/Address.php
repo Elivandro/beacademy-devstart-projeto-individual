@@ -14,6 +14,9 @@ class Address extends Model
         'address',
         'district',
         'zip_code',
+        'city',
+        'state',
+        'country',
         'user_id',
         'created_at',
         'updated_at'
