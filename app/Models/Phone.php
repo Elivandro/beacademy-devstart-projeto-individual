@@ -26,4 +26,13 @@ class Phone extends Model
 
     }
 
+    public function store($data, $id)
+    {
+        $phone      = new phone;
+        $phone->phone       = $data->phone;
+        $phone->description = $data->description;
+        $phone->user_id     = $id;
+        $phone->save();
+    }
+
 }

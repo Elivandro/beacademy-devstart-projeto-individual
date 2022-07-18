@@ -29,5 +29,18 @@ class Address extends Model
 
     }
 
+    public function store($data, $id)
+    {
+        $address    = new Address;
+        $address->address   = $data->address;
+        $address->district  = $data->district;
+        $address->zip_code  = $data->zipcode;
+        $address->city      = $data->city;
+        $address->state     = $data->state;
+        $address->country   = $data->country;
+        $address->user_id   = $id;
+        $address->save();
+    }
+
 
 }

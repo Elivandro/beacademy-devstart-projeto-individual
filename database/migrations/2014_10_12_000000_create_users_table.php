@@ -22,6 +22,7 @@ return new class extends Migration
             $table->timestamp('password_updated_at')->nullable();
             $table->date('birthday');
             $table->string('cpf', 11)->unique();
+            $table->string('image')->nullable();
             $table->integer('userType')->default(0);
             $table->rememberToken();
             $table->timestamps();

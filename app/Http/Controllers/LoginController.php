@@ -22,11 +22,9 @@ class LoginController extends Controller
         return redirect()->back()->with('danger', 'Email ou senha invalido!');
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
         Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
         return redirect()->route('users.login')->with('danger', 'Sessao encerrada com sucesso.');;
     }
 }

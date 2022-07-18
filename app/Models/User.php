@@ -64,4 +64,17 @@ class User extends Authenticatable
 
     }
 
+    public function store($data)
+    {
+        $user = new User;
+        $user->name     = $data->name;
+        $user->email    = $data->email;
+        $user->password = password_hash($data->password, PASSWORD_ARGON2I);
+        $user->birthday = $data->birthday;
+        $user->cpf      = $data->cpf;
+        $user->save();
+
+        return $user->id;
+    }
+
 }

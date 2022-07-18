@@ -8,27 +8,26 @@ use App\Http\Controllers\{
     AccountController
 };
 
-Route::controller(IndexController::class)->group(function ()
-{
+Route::controller(IndexController::class)->group(function (){
     Route::get('/contact', 'contact')->name('index.contact');
 });
 
-Route::controller(LoginController::class)->group(function ()
-    {
-        Route::post('/login',"login")->name("login.index");
-        Route::post('/logout',"logout")->name("logout.index");
-    });
+Route::post('/login', [LoginController::class, "login"])->name("login.index");
 
-Route::controller(UserController::class)->group(function ()
-{
+Route::controller(UserController::class)->group(function (){
     Route::get('/', 'login')->name('users.login');
     Route::get('/users/register', 'create')->name('users.create');
     Route::post('/users/registered', 'store')->name('users.store');
 });
 
-Route::controller(AccountController::class)->group(function (){
-    Route::get('/dashboard', "index")->name('account.index');
+Route::group(['middleware' => ['auth']], function (){
+    Route::get('/logout', [LoginController::class,"logout"])->name("logout.index");
+    Route::get('/dashboard', [AccountController::class, "index"])->name('account.index');
+    Route::delete("/phone/{id}/delete", [AccountController::class, "destroy"])->name("phone.destroy");
+    Route::delete("/address/{id}/delete", [AccountController::class, "destroy"])->name("address.destroy");
+
 });
+
 
 Route::get('/admin', function (){
 
@@ -38,9 +37,4 @@ Route::get('/admin', function (){
 
 });
 
-
 Route::get('/account/user', [UserController::class, 'show'])->name('users.show');
-
-Route::group(['middleware' => 'auth'], function (){
-        
-});
