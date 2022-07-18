@@ -23,9 +23,12 @@ Route::controller(UserController::class)->group(function (){
 Route::group(['middleware' => ['auth']], function (){
     Route::get('/logout', [LoginController::class,"logout"])->name("logout.index");
     Route::get('/dashboard', [AccountController::class, "index"])->name('account.index');
-    Route::delete("/phone/{id}/delete", [AccountController::class, "destroy"])->name("phone.destroy");
-    Route::delete("/address/{id}/delete", [AccountController::class, "destroy"])->name("address.destroy");
-
+    Route::get('/new/address', [AccountController::class, "regAddress"])->name('regaddress.index');
+    Route::get('/new/phone', [AccountController::class, "regPhone"])->name('regphone.index');
+    Route::post('/address/{id}/registered', [AccountController::class, "storeaddress"])->name('create.address');
+    Route::post('/phone/{id}/registered', [AccountController::class, "storephone"])->name('create.phone');
+    Route::delete("/phone/{id}/delete", [AccountController::class, "phonedestroy"])->name("phone.destroy");
+    Route::delete("/address/{id}/delete", [AccountController::class, "addressdestroy"])->name("address.destroy");
 });
 
 

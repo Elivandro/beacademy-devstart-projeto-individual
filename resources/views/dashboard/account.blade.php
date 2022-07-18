@@ -4,12 +4,15 @@
 @section("content")
 <main class="main">
     <section class="max-container">
-        @if(isset($message))
-            {{ $message }}
-        @endif
         @if(session()->has('destroy'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>Atenção!</strong> {{ session()->get('destroy') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
+        @if(session()->has('create'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Atenção!</strong> {{ session()->get('create') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
@@ -38,7 +41,7 @@
                 <div>
                     <div>
                         <h3>Telefones:</h3>
-                        <a href="#">Adicionar Telefones</a>
+                        <a href="{{ route('regphone.index') }}">Adicionar Telefones</a>
                     </div>
                     @foreach(Auth::user()->Phones as $phone)
                     <div>
@@ -60,7 +63,7 @@
                 <div>
                     <div>
                         <h3>Endereços:</h3>
-                        <a href="#">Adicionar Endereços</a>
+                        <a href="{{ route('regaddress.index') }}">Adicionar Endereços</a>
                     </div>
                     @foreach(Auth::user()->Addresses as $address)
                     <div>
