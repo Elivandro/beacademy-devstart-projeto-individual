@@ -51,7 +51,7 @@
             <div class="card-body">
                 <div class="card-margem-top card-content">
                     <div>
-                        <div class="">
+                        <div class="flex-content">
                             <h3>Telefones:</h3>
                             <a href="{{ route('regphone.index') }}" class="btn-sm">Adicionar Telefones</a>
                         </div>
@@ -72,7 +72,7 @@
                         @endforeach
                     </div>
                     <div>
-                        <div>
+                        <div class="flex-content">
                             <h3>Endereços:</h3>
                             <a href="{{ route('regaddress.index') }}" class="btn-sm">Adicionar Endereços</a>
                         </div>
