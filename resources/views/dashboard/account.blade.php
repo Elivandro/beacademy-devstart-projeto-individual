@@ -16,74 +16,90 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
+        @if(session()->has('edit'))
+        <div class="card-sucess" role="alert">
+            <strong>Atenção!</strong> {{ session()->get('edit') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
         <div class="card-container">
             <div class="card-header">
-                @if(Auth::user()->image)
-                    <img src="{{ asset('storage/'.$user->image) }}" width="150px"/>
-                @else
-                    <img src="{{ asset('storage/assets/profile/avatar.jpg') }}" width="150px"/>
-                @endif
-            </div>
-            <div>
-                {{ Auth::user()->name }}
+                <div>
+                    @if(Auth::user()->image)
+                        <img src="{{ asset('storage/'.$user->image) }}"/>
+                    @else
+                        <img src="{{ asset('storage/assets/profile/avatar.jpg') }}"/>
+                    @endif
+                </div>
+                <div class="card-margem-top">
+                    <div>
+                        <h1>
+                            {{ Auth::user()->name }}
+                        </h1>
+                    </div>
+                    <div>
+                        {{ Auth::user()->email }}
+                    </div>
+                    <div>
+                        {{ formatDateTime(Auth::user()->birthday) }}
+                    </div>
+                    <div>
+                        {{ formatCnpjCpf(Auth::user()->cpf) }}
+                    </div>
+                </div>
             </div>
             <div class="card-body">
-                <div>
-                    {{ Auth::user()->email }}
-                </div>
-                <div>
-                    {{ formatDateTime(Auth::user()->birthday) }}
-                </div>
-                <div>
-                    {{ formatCnpjCpf(Auth::user()->cpf) }}
-                </div>
-                <br/>
-                <div>
+                <div class="card-margem-top card-content">
                     <div>
-                        <h3>Telefones:</h3>
-                        <a href="{{ route('regphone.index') }}">Adicionar Telefones</a>
+                        <div class="">
+                            <h3>Telefones:</h3>
+                            <a href="{{ route('regphone.index') }}" class="btn-sm">Adicionar Telefones</a>
+                        </div>
+                        @foreach(Auth::user()->Phones as $phone)
+                        <div>
+                            {{ formatPhoneNumber($phone->phone) }}
+                            {{ $phone->description }}
+                        </div>
+                        <div>
+                            <form action="{{ route('phone.destroy', $phone->id) }}" method="POST">
+                                    @method("DELETE")
+                                    @csrf
+                                    <a href="{{ route('editphone.index', $phone->id) }}" class="btn-sm">EDITAR</a>
+                                    <button type="submit" class="btn-sm">EXCLUIR</button>
+                            </form>
+                        </div>
+                        <br/>
+                        @endforeach
                     </div>
-                    @foreach(Auth::user()->Phones as $phone)
                     <div>
-                        {{ formatPhoneNumber($phone->phone) }}
-                        {{ $phone->description }}
-                    </div>
-                    <div>
-                        <form action="{{ route('phone.destroy', $phone->id) }}" method="POST">
+                        <div>
+                            <h3>Endereços:</h3>
+                            <a href="{{ route('regaddress.index') }}" class="btn-sm">Adicionar Endereços</a>
+                        </div>
+                        @foreach(Auth::user()->Addresses as $address)
+                        <div>
+                            <div>
+                                {{  $address->address }}
+                                {{  $address->district }}
+                                {{  formatCep($address->zip_code) }}
+                            </div>
+                            <div>
+                                {{  $address->city }}
+                                {{  $address->state }}
+                                {{  $address->country }}
+                            </div>
+                        </div>
+                        <div>
+                            <form action="{{ route('address.destroy', $address->id) }}" method="POST">
                                 @method("DELETE")
                                 @csrf
-                                <a href="#{{ $phone->id }}">EDITAR</a>
-                                <button type="submit">EXCLUIR</button>
-                        </form>
+                                <a href="{{ route('editaddress.index', $address->id) }}" class="btn-sm">EDITAR</a>
+                                <button type="submit" class="btn-sm">EXCLUIR</button>
+                            </form>
+                        </div>
+                        <br/>
+                        @endforeach
                     </div>
-                    <br/>
-                    @endforeach
-                </div>
-                <br/>
-                <div>
-                    <div>
-                        <h3>Endereços:</h3>
-                        <a href="{{ route('regaddress.index') }}">Adicionar Endereços</a>
-                    </div>
-                    @foreach(Auth::user()->Addresses as $address)
-                    <div>
-                        {{  $address->address }}
-                        {{  $address->district }}
-                        {{  formatCep($address->zip_code) }}
-                        {{  $address->city }}
-                        {{  $address->state }}
-                        {{  $address->country }}
-                    </div>
-                    <div>
-                        <form action="{{ route('address.destroy', $address->id) }}" method="POST">
-                            @method("DELETE")
-                            @csrf
-                            <a href="#{{ $address->id }}">EDITAR</a>
-                            <button type="submit">EXCLUIR</button>
-                        </form>
-                    </div>
-                    <br/>
-                    @endforeach
                 </div>
             </div>
         </div>

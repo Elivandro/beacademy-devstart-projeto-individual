@@ -13,9 +13,22 @@
     box-shadow: inset 5px 5px 5px var(--color-black);
     transition: all 1.2s;
 }
-.btn:hover{
+.btn-sm{
+    cursor: pointer;
+    display: inline-block;
+    border: 1px solid;
+    border-radius: 8px;
+    padding: 4px 8px;
+    font-size: 12px;
+    line-height: 22px;
+    text-decoration: none;
+    color: var(--color-black);
+    box-shadow: inset 0px 0px 5px var(--color-black);
+
+}
+.btn-sm:hover{
     background-color: var(--color-lightviolet);
-    box-shadow: 5px 5px 5px var(--color-black);
+    box-shadow: 5px 2px 5px var(--color-black);
 }
 .btn-empty{
     width: 140px;

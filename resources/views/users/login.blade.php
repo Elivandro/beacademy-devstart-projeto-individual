@@ -29,7 +29,7 @@
                         </div>
                 </div>
                 <div class="form-group">
-                    <a href="#" class="link-forget">Esqueci minha senha</a>
+                    <a href="{{ route('recover.index') }}" class="link-forget">Esqueci minha senha</a>
                 </div>
                 <div class="form-group-btn">
                     <button type="submit" class="btn-empty">LOGAR</button>

@@ -11,8 +11,8 @@ class IndexController extends Controller
         return view('index');
     }
 
-    public function contact()
+    public function recover()
     {
-        return view('contact');
+        return view('recovery');
     }
 }

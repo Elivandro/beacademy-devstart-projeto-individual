@@ -12,9 +12,4 @@ $(document).ready(function() {
         icon.toggleClass('fa-eye-slash fa-eye')
     });
 
-    $("input[id*='phone']").inputmask({
-        mask: ['(99)9-9999-9999'],
-        keepStatic: false
-    });
-
 });
