@@ -5,21 +5,27 @@
 <main class="main">
     <section class="max-container">
         @if(session()->has('destroy'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Atenção!</strong> {{ session()->get('destroy') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="card-success" role="alert">
+            <div>
+                <strong>Atenção!</strong> {{ session()->get('destroy') }}
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&times;</button>
         </div>
         @endif
         @if(session()->has('create'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Atenção!</strong> {{ session()->get('create') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="card-success" role="alert">
+            <div>
+                <strong>Atenção!</strong> {{ session()->get('create') }}
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&times;</button>
         </div>
         @endif
         @if(session()->has('edit'))
-        <div class="card-sucess" role="alert">
-            <strong>Atenção!</strong> {{ session()->get('edit') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="card-success" role="alert">
+            <div>
+                <strong>Atenção!</strong> {{ session()->get('edit') }}
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&times;</button>
         </div>
         @endif
         <div class="card-container">

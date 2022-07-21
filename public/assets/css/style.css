@@ -113,8 +113,10 @@ body{
     display: flex;
 }
 .card-success{
+    display: flex;
+    justify-content: space-between;
     width: 100%;
-    margin-top: 20px;
+    margin: 20px 0px;
     padding: 20px;
     border: 3px solid var(--color-black);
     border-radius: 15px;
