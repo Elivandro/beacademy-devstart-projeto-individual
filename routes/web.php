@@ -34,14 +34,3 @@ Route::group(['middleware' => ['auth']], function (){
     Route::delete("/phone/{id}/delete", [AccountController::class, "phonedestroy"])->name("phone.destroy");
     Route::delete("/address/{id}/delete", [AccountController::class, "addressdestroy"])->name("address.destroy");
 });
-
-
-Route::get('/admin', function (){
-
-    $users = \App\Models\User::with('phones', 'addresses')->get();
-
-    return view('dashboard.users', compact('users'));
-
-});
-
-Route::get('/account/user', [UserController::class, 'show'])->name('users.show');
