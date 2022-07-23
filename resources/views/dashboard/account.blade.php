@@ -30,11 +30,27 @@
         @endif
         <div class="card-container">
             <div class="card-header">
-                <div>
+                <div class="upload">
                     @if(Auth::user()->image)
-                        <img src="{{ asset('storage/'.$user->image) }}"/>
+                    <form action="{{ route('image.profile', Auth::user()->id) }}" method="post" enctype="multipart/form-data">
+                        @method('PUT')
+                        @csrf
+                        <img src="{{ asset('storage/'.Auth::user()->image) }}"/>
+                        <div class="round">
+                            <input type="file" name="image" onchange="this.form.submit()">
+                            <i class="fa fa-camera" style ="color: #fff;"></i>
+                        </div>
+                    </form>
                     @else
+                    <form action="{{ route('image.profile', Auth::user()->id) }}" method="post" enctype="multipart/form-data">
+                    @method('PUT')
+                    @csrf
                         <img src="{{ asset('storage/assets/profile/avatar.jpg') }}"/>
+                        <div class="round">
+                            <input type="file" name="image" onchange="this.form.submit()">
+                            <i class="fa fa-camera" style="color: #fff;"></i>
+                        </div>
+                    </form>
                     @endif
                 </div>
                 <div class="card-margem-top">
@@ -71,7 +87,9 @@
                                     @method("DELETE")
                                     @csrf
                                     <a href="{{ route('editphone.index', $phone->id) }}" class="btn-sm">EDITAR</a>
+                                    @if(count(Auth::user()->Phones) > 1)
                                     <button type="submit" class="btn-sm">EXCLUIR</button>
+                                    @endif
                             </form>
                         </div>
                         <br/>
@@ -100,7 +118,9 @@
                                 @method("DELETE")
                                 @csrf
                                 <a href="{{ route('editaddress.index', $address->id) }}" class="btn-sm">EDITAR</a>
+                                @if(count(Auth::user()->Addresses) > 1)
                                 <button type="submit" class="btn-sm">EXCLUIR</button>
+                                @endif
                             </form>
                         </div>
                         <br/>
