@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -71,10 +72,29 @@ class User extends Authenticatable
         $user->email    = $data->email;
         $user->password = password_hash($data->password, PASSWORD_ARGON2I);
         $user->birthday = $data->birthday;
-        $user->cpf      = $data->cpf;
+        $user->cpf      = preg_replace('/[^0-9]/', '', $data->cpf);
         $user->save();
 
         return $user->id;
+    }
+
+    public function imageUser($request)
+    {
+        $user = User::findOrFail($request->id);
+
+        if($request->image){
+            $file               = $request['image'];
+            $path               = $file->store('assets/profile', 'public');
+            $data['image']      = $path;
+        }
+
+        if($user->image){
+            unlink(public_path('storage/'.$user->image));
+        }
+
+        $user->image = $data['image'];
+        $user->save();
+
     }
 
 }
