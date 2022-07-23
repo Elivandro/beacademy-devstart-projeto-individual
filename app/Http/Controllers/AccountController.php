@@ -59,17 +59,16 @@ class AccountController extends Controller
     {
         $data = $request->all();
         $data['user_id']    = $id;
-
         $this->address->create($data);
 
         return redirect()->route("account.index")->with('create', "Novo endereço cadastrado com sucesso!");
-
     }
 
     public function storephone(request $request, $id)
     {
         $data = $request->all();
         $data['user_id']    = $id;
+        $data['phone']      = preg_replace('/[^0-9]/', '', $request->phone);
 
         $this->phone->create($data);
 
@@ -79,60 +78,53 @@ class AccountController extends Controller
     public function updatephone(request $request, $id)
     {
         if(!$phone = $this->phone->find($id)){
-
             return redirect()->route("account.index");
-
         }
+
         $data = $request->all();
+        $data['phone']      = preg_replace('/[^0-9]/', '', $request->phone);
 
         $phone->update($data);
 
         return redirect()->route("account.index")->with('edit', "Telefone atualizado com sucesso!");
-
     }
 
     public function updateaddress(request $request, $id)
     {
         if(!$address = $this->address->find($id)){
-
             return redirect()->route("account.index");
-
         }
-        $data = $request->all();
 
+        $data = $request->all();
         $address->update($data);
 
         return redirect()->route("account.index")->with('edit', "Endereço atualizado com sucesso!");
-
     }
 
     public function addressdestroy($id)
     {
         if($address = $this->address->find($id)){
-
             $address->delete();
             return redirect()->route("account.index")->with('destroy', "Endereço deletado com sucesso!");
-
-        }else{
-
-            return redirect()->route("account.index");
-
         }
-        
-    }  
-    
+            return redirect()->route("account.index");
+    }
+
     public function phonedestroy($id)
     {
         if($phone = $this->phone->find($id)){
 
             $phone->delete();
             return redirect()->route("account.index")->with('destroy', "Telefone deletado com sucesso!");
-
-        }else{
-
-            return redirect()->route("account.index");
-
         }
+            return redirect()->route("account.index");
+    }
+
+    public function updateImg(request $request)
+    {
+        $this->user->imageUser($request);
+
+        return redirect()->route("account.index")->with('edit', "Foto de perfil atualizada com sucesso!");
 
     }
 
