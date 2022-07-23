@@ -20,4 +20,9 @@ $(document).ready(function() {
             this.parentElement.style.display = 'none';
         });
     }
+
+    $('#zipcode').mask('00000-000');
+    $('#cpf').mask('000.000.000-00');
+    $('#phone').mask('(00) 0 0000-0000');
+
 });

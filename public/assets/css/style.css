@@ -79,23 +79,6 @@ body{
     display: flex;
     justify-content: space-evenly;
 }
-.card-header img{
-    margin: 10px auto;
-    width: 150px;
-    display: block;
-    border: 3px solid var(--color-black);
-    border-radius: 50%;
-    object-fit: cover;
-    transition: all 1.2s;
-    box-shadow: inset 10px 10px 10px var(--color-black);
-
-}
-.card-header img:hover{
-    cursor: pointer;
-    border: 3px solid var(--color-white);
-    box-shadow: 10px 10px 10px var(--color-black);
-
-}
 .card-title {
     text-align: center;
     margin-bottom: 20px;
@@ -133,7 +116,39 @@ body{
     display: flex;
     justify-content: space-evenly;
 }
-
+.upload{
+    position: relative;
+}
+.upload img{
+    object-fit: cover;
+    width: 150px;
+    border-radius: 50%;
+    border: 6px solid #eaeaea;
+  }
+.upload img:hover{
+    border-radius: 50%;
+    border: 6px solid #bfbbbb;
+  }
+.upload .round{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #00B4FF;
+    width: 32px;
+    height: 32px;
+    line-height: 33px;
+    text-align: center;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+.upload .round input[type="file"]{
+    position: absolute;
+    transform: scale(2);
+    opacity: 0;
+  }
+input[type=file]::-webkit-file-upload-button{
+      cursor: pointer;
+  }
 .footer{
     margin-top: 20px;
     width: 100%;
