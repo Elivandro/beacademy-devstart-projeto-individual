@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="cpf" id="cpf" min="0" maxlength="11" placeholder=" " required/>
+                        <input type="text" name="cpf" id="cpf" min="0" maxlength="14" placeholder=" " required/>
                         <label for="cpf">CPF</label>
                     </div>
                     <div class="form-group">
