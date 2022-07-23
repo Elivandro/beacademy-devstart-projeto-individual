@@ -52,15 +52,4 @@ class UserController extends Controller
 
     }
 
-    public function show(){
-
-        $arrUsers = [
-            'users' => user::all(), 
-            'phones' => phone::all(),
-            'addresses' => address::all()
-        ];
-
-        return view('admin.account', compact('arrUsers'));
-    }
-
 }
