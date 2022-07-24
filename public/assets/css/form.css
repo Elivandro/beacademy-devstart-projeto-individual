@@ -53,6 +53,13 @@
     box-shadow: 3px 3px 8px var(--color-black);
 
 }
+.btn-close{
+    width: 32px;
+    height: 32px;
+    border: 3px solid var(--color-black);
+    border-radius: 12px;
+    font-size: 18px;
+}
 .form{
     margin-top: 40px;
     padding: 40px 80px;

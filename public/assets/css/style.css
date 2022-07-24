@@ -107,7 +107,7 @@ body{
     color: var(--color-white);
     background-color: var(--color-darkviolet);
 }
-.card-margem-top{
+.card-margem-top, .margem-top{
     margin-top: 40px;
 }
 .card-btn{
