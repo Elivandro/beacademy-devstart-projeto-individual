@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Address;
-use App\Models\Phone;
-use App\Models\User;
+use App\Models\{
+    Address,
+    Phone,
+    User
+};
 use Illuminate\Http\Request;
+use App\Http\Requests\ValidateRequestData;
+use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
@@ -24,7 +28,10 @@ class AccountController extends Controller
 
     public function index()
     {
-        return view('dashboard.account');
+        if(Auth::check()){
+            return view('dashboard.account');
+        }
+        return redirect()->route('login');
     }
 
     public function regaddress()
@@ -120,7 +127,7 @@ class AccountController extends Controller
             return redirect()->route("account.index");
     }
 
-    public function updateImg(request $request)
+    public function updateImg(ValidateRequestData $request)
     {
         $this->user->imageUser($request);
 

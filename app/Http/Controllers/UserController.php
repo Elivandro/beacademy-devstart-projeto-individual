@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ValidateRequestData;
 use Illuminate\Support\Facades\Auth;
 use App\Models\{
     user,
     Phone,
     Address
 };
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -26,7 +27,7 @@ class UserController extends Controller
     public function login()
     {
         if(Auth::check()){
-            return redirect()->route('account.index')->with('message', 'Acesso realizado com sucesso');
+            return redirect()->route('account.index');
         }else{
             return view('users.login');
         }
@@ -40,15 +41,13 @@ class UserController extends Controller
 
     }
 
-    public function store(request $request){
+    public function store(ValidateRequestData $request){
 
         $user = $this->user->store($request);
         $this->address->store($request, $user);
         $this->phone->store($request, $user);
 
-        $message = "Usuario registrado com sucesso.";
-
-        return view('users.register', compact('message'));
+        return redirect()->route('login.index')->with('success', 'Cadastro realizado com sucesso');
 
     }
 
