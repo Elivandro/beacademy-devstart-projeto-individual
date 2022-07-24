@@ -8,6 +8,8 @@ use App\Http\Controllers\{
     AccountController
 };
 
+require __DIR__.'/auth.php';
+
 Route::post('/login', [LoginController::class, "login"])->name("login.index");
 
 Route::controller(IndexController::class)->group(function (){
