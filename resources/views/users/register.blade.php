@@ -5,16 +5,16 @@
 <main class="main">
     <section class="max-container">
         @if($errors->any())
-            <div class="alert alert-danger" role="alert">
-                @foreach($errors->all() as $error)
-                    {{ $error }}
-                    <br/>
-                @endforeach
-            </div>
-        @endif
-        @if(isset($message))
-            <div class="card-success">
-                {{ $message }}
+            <div class="card-success" role="alert">
+                <div>
+                    <strong>Atenção!</strong>
+                        @foreach($errors->all() as $error)
+                        <div>
+                            {{ $error }}
+                        </div>
+                        @endforeach
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&times;</button>
             </div>
         @endif
         <form action="{{ route('users.store') }}" method="post" class="form" name="register">

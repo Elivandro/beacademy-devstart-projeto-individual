@@ -2,8 +2,21 @@
 @section("title", "Painel de ". Auth::user()->name)
 
 @section("content")
-<main class="main">
+<main class="main margem-top">
     <section class="max-container">
+        @if($errors->any())
+        <div class="card-success" role="alert">
+            <div>
+                <strong>Atenção!</strong>
+                @foreach($errors->all() as $error)
+                <div>
+                    {{ $error }}
+                </div>
+                @endforeach
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&times;</button>
+        </div>
+        @endif
         @if(session()->has('destroy'))
         <div class="card-success" role="alert">
             <div>
@@ -28,7 +41,15 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&times;</button>
         </div>
         @endif
-        <div class="card-container">
+        @if(session()->has('success'))
+        <div class="card-success" role="alert">
+            <div>
+                <strong>Atenção!</strong> {{ session()->get('success') }}
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&times;</button>
+        </div>
+        @endif
+        <div class="card-container margem-top">
             <div class="card-header">
                 <div class="upload">
                     @if(Auth::user()->image)

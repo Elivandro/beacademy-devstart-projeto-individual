@@ -17,7 +17,7 @@
                 {{ $message }}
             </div>
         @endif
-        <form action="{{ route('users.store') }}" method="post" class="form" name="register">
+        <form method="POST" action="{{ route('password.email') }}">
             @csrf
             <div class="form-group-column">
                 <h4 class="title-form">Recuperar senha</h4>

@@ -4,9 +4,25 @@
 @section("content")
 <main class="main">
     <section class="max-container">
-        @if(session('danger'))
+        @if($errors->any())
             <div class="card-success" role="alert">
-                {{ session('danger') }}
+                <div>
+                    <strong>Atenção!</strong>
+                        @foreach($errors->all() as $error)
+                        <div>
+                            {{ $error }}
+                        </div>
+                        @endforeach
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&times;</button>
+            </div>
+        @endif
+        @if(session('success'))
+            <div class="card-success" role="alert">
+                <div>
+                    {{ session('success') }}
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&times;</button>
             </div>
         @endif
         <form action="{{ route('login.index') }}" method="post" class="form" name="signIn">
