@@ -25,6 +25,6 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('users.login')->with('danger', 'Sessao encerrada com sucesso.');;
+        return redirect()->route('users.login')->with('success', 'Sessao encerrada com sucesso.');;
     }
 }

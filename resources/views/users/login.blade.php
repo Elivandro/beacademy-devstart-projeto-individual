@@ -25,6 +25,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&times;</button>
             </div>
         @endif
+        @if(session('danger'))
+            <div class="card-success" role="alert">
+                <div>
+                    {{ session('danger') }}
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&times;</button>
+            </div>
+        @endif
         <form action="{{ route('login.index') }}" method="post" class="form" name="signIn">
             @csrf
             <div class="form-group">
