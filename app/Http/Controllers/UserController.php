@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ValidateRequestData;
 use Illuminate\Support\Facades\Auth;
 use App\Models\{
-    user,
+    User,
     Phone,
     Address
 };
