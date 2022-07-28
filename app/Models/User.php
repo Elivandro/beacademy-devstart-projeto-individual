@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -70,7 +71,7 @@ class User extends Authenticatable
         $user = new User;
         $user->name     = $data->name;
         $user->email    = $data->email;
-        $user->password = password_hash($data->password, PASSWORD_ARGON2I);
+        $user->password = Hash::make($data->password, PASSWORD_ARGON2I);
         $user->birthday = $data->birthday;
         $user->cpf      = preg_replace('/[^0-9]/', '', $data->cpf);
         $user->save();
