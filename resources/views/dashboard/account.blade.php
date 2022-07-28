@@ -66,7 +66,7 @@
                     <form action="{{ route('image.profile', Auth::user()->id) }}" method="post" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
-                        <img src="{{ asset('storage/assets/profile/avatar.jpg') }}"/>
+                        <img src="{{ asset('assets/img/users/avatar.png') }}"/>
                         <div class="round">
                             <input type="file" name="image" onchange="this.form.submit()">
                             <i class="fa fa-camera" style="color: #fff;"></i>
