@@ -71,7 +71,7 @@ class User extends Authenticatable
         $user = new User;
         $user->name     = $data->name;
         $user->email    = $data->email;
-        $user->password = Hash::make($data->password, PASSWORD_ARGON2I);
+        $user->password = Hash::make($data->password);
         $user->birthday = $data->birthday;
         $user->cpf      = preg_replace('/[^0-9]/', '', $data->cpf);
         $user->save();
