@@ -25,4 +25,10 @@ $(document).ready(function() {
     $('#cpf').mask('000.000.000-00');
     $('#phone').mask('(00) 0 0000-0000');
 
+    $(".form").submit(function() {
+        $("#zipcode").unmask();
+        $("#cpf").unmask();
+        $("#phone").unmask();
+    });
+
 });
