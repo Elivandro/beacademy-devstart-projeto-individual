@@ -25,4 +25,47 @@ class UserTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_create_phone()
+    {
+        $user = User::factory()->create();
+
+        $id = $user->id;
+
+        $response    = $this->post("/phone/{$id}/registered", [
+            'phone'         => '69999990000',
+            'description'   => 'telefone teste',
+            'user_id'       => $id
+        ]);
+
+        $this->actingAs($user);
+
+        $response = $this->get('/dashboard');
+
+        $response->assertStatus(200);
+    }
+
+    public function test_create_address()
+    {
+
+        $user = User::factory()->create();
+
+        $id = $user->id;
+
+        $response    = $this->post("/address/{$id}/registered", [
+            'address'   => 'rua das lamentações',
+            'district'  => 'bairro das lamentações',
+            'zip_code'  => '12345000',
+            'city'      => 'cidade',
+            'state'     => 'estado',
+            'country'   => 'pais',
+            'user_id'   => $id
+        ]);
+
+        $this->actingAs($user);
+
+        $response = $this->get('/dashboard');
+
+        $response->assertStatus(200);
+    }
 }

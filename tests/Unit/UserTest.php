@@ -10,4 +10,14 @@ class UserTest extends TestCase
     {
         $this->assertTrue(true);
     }
+
+    public function test_create_phone()
+    {
+        $this->assertTrue(true);
+    }
+
+    public function test_create_address()
+    {
+        $this->assertTrue(true);
+    }
 }
