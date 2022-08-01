@@ -86,7 +86,7 @@
                 </div>
                 <div class="form-group-btn">
                     <button type="submit" class="btn-empty">CADASTRAR</button>
-                    <a href="{{ route('users.login') }}" class="btn-empty">ENTRAR</a>
+                    <a href="{{ route('login') }}" class="btn-empty">ENTRAR</a>
                 </div>
             </div>
         </form>

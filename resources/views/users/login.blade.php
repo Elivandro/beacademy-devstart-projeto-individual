@@ -17,6 +17,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&times;</button>
             </div>
         @endif
+        @if(session('status'))
+            <div class="card-success" role="alert">
+                <div>
+                    {{ session('status') }}
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&times;</button>
+            </div>
+        @endif
         @if(session('success'))
             <div class="card-success" role="alert">
                 <div>
@@ -33,7 +41,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&times;</button>
             </div>
         @endif
-        <form action="{{ route('login.index') }}" method="post" class="form" name="signIn">
+        <form action="{{ route('login') }}" method="post" class="form" name="signIn">
             @csrf
             <div class="form-group">
                 <h4 class="title-form">Acessar conta</h4>
@@ -57,7 +65,7 @@
                 </div>
                 <div class="form-group-btn">
                     <button type="submit" class="btn-empty">LOGAR</button>
-                    <a href="{{ route('users.create') }}" class="btn-empty">CADASTRAR</a>
+                    <a href="{{ route('register') }}" class="btn-empty">CADASTRAR</a>
                 </div>
             </div>
         </form>
