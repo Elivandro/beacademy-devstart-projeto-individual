@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 use App\Http\Requests\ValidateRequestData;
 use Illuminate\Support\Facades\Auth;
 use App\Models\{
@@ -9,6 +15,7 @@ use App\Models\{
     Phone,
     Address
 };
+
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -31,24 +38,20 @@ class UserController extends Controller
         }else{
             return view('users.login');
         }
-
     }
 
     public function create()
     {
-
         return view('users.register');
-
     }
 
-    public function store(ValidateRequestData $request){
-
+    public function store(ValidateRequestData $request)
+    {
         $user = $this->user->store($request);
         $this->address->store($request, $user);
         $this->phone->store($request, $user);
 
         return redirect()->route('login.index')->with('success', 'Cadastro realizado com sucesso');
-
     }
 
 }

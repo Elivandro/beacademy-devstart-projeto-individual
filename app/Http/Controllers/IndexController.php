@@ -13,6 +13,6 @@ class IndexController extends Controller
 
     public function recover()
     {
-        return view('recovery');
+        return view('users.recovery');
     }
 }

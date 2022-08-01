@@ -9,6 +9,7 @@ use App\Models\{
 };
 use Illuminate\Http\Request;
 use App\Http\Requests\ValidateRequestData;
+use App\Http\Requests\ValideImageFormat;
 use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
@@ -127,7 +128,7 @@ class AccountController extends Controller
             return redirect()->route("account.index");
     }
 
-    public function updateImg(ValidateRequestData $request)
+    public function updateImg(ValideImageFormat $request)
     {
         $this->user->imageUser($request);
 

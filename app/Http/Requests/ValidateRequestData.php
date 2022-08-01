@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
 class ValidateRequestData extends FormRequest
 {
@@ -25,34 +26,24 @@ class ValidateRequestData extends FormRequest
     {
         $id = $this->id ?? '';
 
-        $rules = [
-            'name' => [
-                'string',
-                'min:3',
-                'max:50'
-            ],
-            'email' => [
-                'email',
-                'unique:users,email,{$id},id'
-            ],
-            'password' => [
-                'min:4',
-                'max:12'
-            ],
-            'cpf' => [
-                'unique:users,cpf,{$id},id',
-                'min:11'
-            ],
-            'image' => [
-                'file',
-                'mimes:jpeg,jpg,png'
-            ],
-        ];
-
-        if($this->method('PUT')){
-            $rules['image'] = [
-                'file',
-                'mimes:jpeg,jpg,png'
+        if($this->method('POST')){
+            $rules = [
+                'name' => [
+                    'string',
+                    'min:3',
+                    'max:50'
+                ],
+                'email' => [
+                    'email',
+                    'unique:users,email,{$id},id'
+                ],
+                'password' => [
+                    ['required', Password::defaults()],
+                ],
+                'cpf' => [
+                    'unique:users,cpf,{$id},id',
+                    'min:11'
+                ],
             ];
         }
 
