@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
+
 
 class User extends Authenticatable
 {
@@ -40,7 +42,6 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
     /**
@@ -50,6 +51,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'password_created_at' => 'datetime',
     ];
 
     public function Phones()
@@ -68,12 +70,13 @@ class User extends Authenticatable
 
     public function store($data)
     {
+
         $user = new User;
         $user->name     = $data->name;
         $user->email    = $data->email;
         $user->password = Hash::make($data->password);
         $user->birthday = $data->birthday;
-        $user->cpf      = preg_replace('/[^0-9]/', '', $data->cpf);
+        $user->cpf      = $data->cpf;
         $user->save();
 
         return $user->id;
