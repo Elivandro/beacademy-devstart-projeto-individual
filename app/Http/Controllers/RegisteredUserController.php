@@ -3,42 +3,45 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\ValidateRequestData;
-use App\Models\{
-    User,
-    Phone,
-    Address
-};
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
+use App\Models\User;
+
 class RegisteredUserController extends Controller
 {
-
-    protected $user;
-    protected $phone;
-    protected $address;
-
-    public function __construct(User $user, Phone $phone, Address $address)
-    {
-        $this->user = $user;
-        $this->phone = $phone;
-        $this->address = $address;
-    }
 
     public function create()
     {
         return view('users.register');
     }
 
-    public function store(ValidateRequestData $request)
+
+    public function store(Request $request)
     {
-        $user = $this->user->store($request);
-        $this->address->store($request, $user);
-        $this->phone->store($request, $user);
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', Rules\Password::defaults()],
+            'birthday'  => ['required', 'date',],
+            'cpf'   => ['required', 'string'],
+        ]);
+
+        $user = User::create([
+            'name'      => $request->name,
+            'email'     => $request->email,
+            'password'  => Hash::make($request->password),
+            'birthday'  => $request->birthday,
+            'cpf'       => $request->cpf
+        ]);
 
         event(new Registered($user));
+
         Auth::login($user);
 
-        return redirect()->route('login.index')->with('success', 'Cadastro realizado com sucesso');
+        return redirect(RouteServiceProvider::HOME);
     }
 }
