@@ -17,7 +17,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&times;</button>
             </div>
         @endif
-        <form action="{{ route('users.store') }}" method="post" class="form" name="register">
+        <form action="{{ route('register') }}" method="post" class="form" name="register">
             @csrf
             <div class="form-group-column">
                 <h4 class="title-form">Criar conta</h4>
