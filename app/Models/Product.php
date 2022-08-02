@@ -2,27 +2,29 @@
 
 namespace App\Models;
 
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable;
     
     protected $fillable = [
         'id',
+        'nickname',
         'name',
         'description',
+        'specie',
+        'origin',
+        'height',
+        'substract',
+        'Fertilizing',
         'image',
-        'category_id',
         'created_at',
         'updated_at'
     ];
-
-    public function category()
-    {
-        return $this->hasMany(Category::class);
-    }
 
     public function getProducts(string $search = null)
     {
@@ -30,10 +32,12 @@ class Product extends Model
         {
             if($search){
                 $query->where('name', 'LIKE', "%{$search}%");
-                $query->orWhere('category', 'LIKE', "%{$search}%");
+                $query->orWhere('nickname', 'LIKE', "%{$search}%");
+                $query->orWhere('specie', 'LIKE', "%{$search}%");
+                $query->orWhere('origin', 'LIKE', "%{$search}%");
             }
         })->paginate(5);
-
+        
         return $products;
     }
 }

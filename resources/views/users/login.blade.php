@@ -60,8 +60,10 @@
                             </span>
                         </div>
                 </div>
-                <div class="form-group">
-                    <a href="{{ route('recovery') }}" class="link-forget">Esqueci minha senha</a>
+                <div>
+                    <div>
+                        <a href="{{ route('recovery') }}" class="link-forget">Esqueci minha senha</a>
+                    </div>
                 </div>
                 <div class="form-group-btn">
                     <button type="submit" class="btn-empty">LOGAR</button>

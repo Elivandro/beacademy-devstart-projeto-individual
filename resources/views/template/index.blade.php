@@ -20,6 +20,7 @@
             <nav class="nav-menu">
                 <ul>
                     <li><a href="{{ route('products.index') }}">Bonsais</a></li>
+                    <li><a href="{{ route('products.create') }}">Novo Produto</a></li>
                     <li><a href="{{ route('account.index') }}">Conta</a></li>
                     @if(Auth::User())
                         <form method="POST" action="{{ route('logout') }}">

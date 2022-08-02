@@ -17,17 +17,22 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&times;</button>
             </div>
         @endif
-        <form action="{{ route('products.index') }}" method="GET">
-            <div class="form-group-row">
-                <div class="form-group">
-                    <input type="search" name="search" id="search"/>
-                    <label for="search">Nome ou categoria/espécie</label>
+        <section>
+            <form action="{{ route('products.index') }}" method="GET" class="form">
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <input type="search" name="search" id="search"/>
+                        <label for="search">Faça uma busca!</label>
+                    </div>
+                    <button type="submit" class="btn-sm">BUSCAR</button>
                 </div>
-                <button>BUSCAR</button>
+            </form>
+        </section>
+        <section>
+            <div>
+                produtos
             </div>
-        </form>
-
-
+        </section>
 
     </section>
 </main>
