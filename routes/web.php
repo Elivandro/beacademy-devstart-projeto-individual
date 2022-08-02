@@ -2,27 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
-    IndexController,
-    LoginController,
-    UserController,
     AccountController,
     ProductController
 };
 
 require __DIR__.'/auth.php';
 
-Route::controller(IndexController::class)->group(function (){
-    Route::get('/recovery', 'recover')->name('recover.index');
-});
-
-Route::controller(UserController::class)->group(function (){
-    Route::get('/login', 'login')->name('users.login');
-    Route::get('/users/register', 'create')->name('users.create');
-    Route::post('/users/registered', 'store')->name('users.store');
-});
-
 Route::group(['middleware' => ['auth']], function (){
-    Route::get('/logout', [LoginController::class,"logout"])->name("logout.index");
     Route::get('/dashboard', [AccountController::class, "index"])->name('account.index');
     Route::get('/new/address', [AccountController::class, "regAddress"])->name('regaddress.index');
     Route::get('/new/phone', [AccountController::class, "regPhone"])->name('regphone.index');
