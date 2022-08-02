@@ -3,7 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Password;
+use Illuminate\Validation\Rules;
+
 
 class ValidateRequestData extends FormRequest
 {
@@ -38,7 +39,7 @@ class ValidateRequestData extends FormRequest
                     'unique:users,email,{$id},id'
                 ],
                 'password' => [
-                    ['required', Password::defaults()],
+                    ['required', Rules\Password::defaults()],
                 ],
                 'cpf' => [
                     'unique:users,cpf,{$id},id',
