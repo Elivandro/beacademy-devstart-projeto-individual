@@ -5,19 +5,18 @@ use App\Http\Controllers\{
     IndexController,
     LoginController,
     UserController,
-    AccountController
+    AccountController,
+    ProductController
 };
 
 require __DIR__.'/auth.php';
-
-Route::post('/login', [LoginController::class, "login"])->name("login.index");
 
 Route::controller(IndexController::class)->group(function (){
     Route::get('/recovery', 'recover')->name('recover.index');
 });
 
 Route::controller(UserController::class)->group(function (){
-    Route::get('/', 'login')->name('users.login');
+    Route::get('/login', 'login')->name('users.login');
     Route::get('/users/register', 'create')->name('users.create');
     Route::post('/users/registered', 'store')->name('users.store');
 });
@@ -36,4 +35,8 @@ Route::group(['middleware' => ['auth']], function (){
     Route::post('/phone/{id}/registered', [AccountController::class, "storephone"])->name('create.phone');
     Route::delete("/phone/{id}/delete", [AccountController::class, "phonedestroy"])->name("phone.destroy");
     Route::delete("/address/{id}/delete", [AccountController::class, "addressdestroy"])->name("address.destroy");
+});
+
+Route::controller(ProductController::class)->group(function (){
+    Route::get('/', 'index')->name('products.index');
 });

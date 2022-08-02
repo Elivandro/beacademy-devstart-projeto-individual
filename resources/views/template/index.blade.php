@@ -19,6 +19,7 @@
         <div class="max-container container">
             <nav class="nav-menu">
                 <ul>
+                    <li><a href="{{ route('products.index') }}">Bonsais</a></li>
                     <li><a href="{{ route('users.login') }}">Conta</a></li>
                     @if(Auth::User())
                     <li class="nav-item p-2"><a href="{{ route('logout.index') }}" class="btn btn-outline-dark">Logout</a></li>
