@@ -3,50 +3,51 @@
 
 @section("content")
 <main class="main margem-top">
-<form action="" method="post" class="form" name="register">
+    <section class="max-container">
+        <form action="{{ route('products.create') }}" method="post" class="form">
             @csrf
             <div class="form-group-column">
-                <h4 class="title-form">Cadastrar Produto</h4>
+                <h4 class="title-form">Cadastrar nova bonsai</h4>
                 <div class="form-group-row">
                     <div class="form-group">
-                        <input type="text" name="name" id="nome" placeholder=" " required/>
-                        <label for="nome">Nome</label>
+                        <input type="text" name="nickname" id="nickname" placeholder=" " required/>
+                        <label for="nickname">Nome Popular</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="name" id="name" placeholder=" " required/>
+                        <label for="name">Nome Científico</label>
                     </div>
                     <div class="form-group">
                         <input type="text" name="description" id="description" placeholder=" " required/>
                         <label for="description">Descrição</label>
                     </div>
+                </div>
+                <div class="form-group-row">
                     <div class="form-group">
-                        <input type="text" name="specie" id="email" placeholder=" " required/>
+                        <input type="text" name="specie" id="specie" placeholder=" " required/>
                         <label for="specie">Espécie</label>
                     </div>
-                </div>
-                <div class="form-group-row">
                     <div class="form-group">
-                        <input type="text" name="district" id="district" placeholder=" " required/>
-                        <label for="district">Bairro</label>
+                        <input type="text" name="origin" id="origin" placeholder=" " required/>
+                        <label for="origin">Origem</label>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="zipcode" id="zipcode" placeholder=" " required/>
-                        <label for="zipcode">CEP</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="city" id="city" placeholder=" " required/>
-                        <label for="city">Cidade</label>
+                        <input type="number" name="height" id="height" placeholder=" " required/>
+                        <label for="height">Altura máxima</label>
                     </div>
                 </div>
                 <div class="form-group-row">
                     <div class="form-group">
-                        <input type="text" name="state" id="state" placeholder=" " required/>
-                        <label for="state">Estado</label>
+                        <input type="text" name="substract" id="substract" placeholder=" " required/>
+                        <label for="substract">Substrato</label>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="country" id="country" placeholder=" " required/>
-                        <label for="country">País</label>
+                        <input type="text" name="Fertilizing" id="Fertilizing" placeholder=" " required/>
+                        <label for="Fertilizing">Adubação</label>
                     </div>
                     <div class="form-group">
-                        <input type="date" name="birthday" id="birthday" placeholder=" " required/>
-                        <label for="birthday">Nascimento</label>
+                        <input type="text" name="image" id="image" placeholder=" " required/>
+                        <label for="image">Imagem</label>
                     </div>
                 </div>
                 <div class="form-group-btn">
