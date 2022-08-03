@@ -20,11 +20,9 @@ class AccountController extends Controller
 
     public function __construct(User $user, Address $address, Phone $phone)
     {
-
         $this->user = $user;
         $this->address = $address;
         $this->phone = $phone;
-
     }
 
     public function index()
@@ -121,9 +119,9 @@ class AccountController extends Controller
     public function phonedestroy($id)
     {
         if($phone = $this->phone->find($id)){
-
             $phone->delete();
             return redirect()->route("account.index")->with('destroy', "Telefone deletado com sucesso!");
+
         }
             return redirect()->route("account.index");
     }
