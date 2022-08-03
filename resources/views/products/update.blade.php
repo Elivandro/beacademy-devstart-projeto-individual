@@ -4,7 +4,7 @@
 @section("content")
 <main class="main margem-top">
     <section class="max-container">
-        <form action="{{ route('products.update') }}" method="post" class="form">
+        <form action="{{ route('products.update', $product->id) }}" method="post" class="form">
             @method("PUT")
             @csrf
             <div class="form-group-column">
@@ -43,7 +43,7 @@
                         <label for="substract">Substrato</label>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="Fertilizing" value="{{ $product->fertilizing }}" id="Fertilizing" placeholder=" " required/>
+                        <input type="text" name="Fertilizing" value="{{ $product->Fertilizing }}" id="Fertilizing" placeholder=" " required/>
                         <label for="Fertilizing">Adubação</label>
                     </div>
                     <div class="form-group">

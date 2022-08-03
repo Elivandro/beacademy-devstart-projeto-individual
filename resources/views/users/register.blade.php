@@ -62,7 +62,7 @@
                         <label for="district">Bairro</label>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="zipcode" id="zipcode" placeholder=" " required/>
+                        <input type="text" name="zip_code" id="zipcode" placeholder=" " required/>
                         <label for="zipcode">CEP</label>
                     </div>
                     <div class="form-group">

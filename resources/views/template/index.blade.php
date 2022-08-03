@@ -20,7 +20,9 @@
             <nav class="nav-menu">
                 <ul>
                     <li><a href="{{ route('products.index') }}">Bonsais</a></li>
-                    <li><a href="{{ route('products.create') }}">Novo Produto</a></li>
+                    @if(Auth::User() && Auth::User()->userType == 1)
+                        <li><a href="{{ route('products.create') }}">Novo Produto</a></li>
+                    @endif
                     <li><a href="{{ route('account.index') }}">Conta</a></li>
                     @if(Auth::User())
                         <form method="POST" action="{{ route('logout') }}">
@@ -40,6 +42,7 @@
     <footer class="footer">
         <div class="max-container">
             <h4>Paylivre & beAcademy - DevStart! &copy;</h4>
+            <h5>DevStarter Elivandro!
         </div>
     </footer>
 
