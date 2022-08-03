@@ -34,7 +34,7 @@ class Address extends Model
         $address    = new Address;
         $address->address   = $data->address;
         $address->district  = $data->district;
-        $address->zip_code  = $data->zipcode;
+        $address->zip_code  = $data->zip_code;
         $address->city      = $data->city;
         $address->state     = $data->state;
         $address->country   = $data->country;
